@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:booking_hotel/pages/home_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -47,12 +46,12 @@ class _WelcomePageState extends State<WelcomePage> {
                     width: double.maxFinite,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HomePage(),
-                          ),
-                        );
+                        // Navigator.pushReplacement(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const Home(),
+                        //   ),
+                        // );
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,
