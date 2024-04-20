@@ -1,6 +1,5 @@
 import 'package:booking_hotel/providers/all_hotels_provider.dart';
 import 'package:booking_hotel/widgets/custom_button.dart';
-import 'package:booking_hotel/widgets/custom_nav_bar.dart';
 import 'package:booking_hotel/widgets/custom_text_field.dart';
 import 'package:booking_hotel/widgets/hotel_card.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +18,7 @@ class HotelPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      bottomNavigationBar: const CustomNavBar(index: 0),
+      // bottomNavigationBar: const CustomNavBar(index: 0),
       backgroundColor: tPrimaryColor,
       body: SafeArea(
         bottom: false,

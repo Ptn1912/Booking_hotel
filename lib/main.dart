@@ -5,6 +5,8 @@ import 'package:booking_hotel/pages/welcome_page.dart.dart';
 import 'package:booking_hotel/pages/homepage.dart';
 import 'package:flutter_config/flutter_config.dart';
 
+import 'widgets/bottom_navbar.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterConfig.loadEnvVariables();
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: const HotelPage(),
+      home: BottomNavBar(),
     );
   }
 }

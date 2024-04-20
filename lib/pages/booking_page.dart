@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constant/color.dart';
 import '../providers/all_hotels_provider.dart';
-import '../widgets/custom_nav_bar.dart';
 import '../widgets/list_hotel_card.dart';
 
 List<String> imageTexts = [
@@ -86,7 +85,7 @@ class _BookingPageState extends State<BookingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomNavBar(index: 1),
+      // bottomNavigationBar: const CustomNavBar(index: 1),
       body: SafeArea(
         child: SingleChildScrollView(
           // controller: _scrollController,
