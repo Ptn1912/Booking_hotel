@@ -1,31 +1,37 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class NearbyPlaceModel {
+class PlacesModel {
   final String image;
-  NearbyPlaceModel({
+  PlacesModel({
     required this.image,
   });
 }
 
-List<NearbyPlaceModel> nearbyPlaces = [
-  NearbyPlaceModel(
+List<PlacesModel> nearbyPlaces = [
+  PlacesModel(
     image: "assets/places/place7.jpg",
   ),
-  NearbyPlaceModel(
+  PlacesModel(
     image: "assets/places/place6.jpg",
   ),
-  NearbyPlaceModel(
+  PlacesModel(
     image: "assets/places/place5.jpg",
   ),
-  NearbyPlaceModel(
+  PlacesModel(
     image: "assets/places/place4.jpg",
   ),
-  NearbyPlaceModel(
+  PlacesModel(
     image: "assets/places/place3.jpg",
   ),
-  NearbyPlaceModel(
+  PlacesModel(
     image: "assets/places/place2.jpg",
   ),
-  NearbyPlaceModel(
+  PlacesModel(
     image: "assets/places/place1.jpg",
+  ),
+  PlacesModel(
+    image: "assets/places/place8.jpg",
+  ),
+  PlacesModel(
+    image: "assets/places/place9.jpg",
   ),
 ];

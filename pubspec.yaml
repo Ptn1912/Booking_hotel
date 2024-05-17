@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.3.2 <4.0.0'
+  sdk: '>=3.2.6 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,13 +30,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  google_fonts: ^6.2.1
+  provider: ^6.1.2
+  lottie: ^3.1.0
+  cached_network_image: ^3.3.1
+  badges: ^3.1.2
+  persistent_shopping_cart: ^0.0.7
+  hooks_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  intl: ^0.19.0
+  audioplayers: ^5.2.1
+  get: ^4.6.6
+  loading_overlay: ^0.3.0
+  font_awesome_flutter: ^10.7.0
+  google_fonts: ^6.2.0
   ionicons: ^0.2.2
+  get_storage: ^2.1.1
+  logger: ^2.2.0
+  curved_navigation_bar: ^1.0.3
+  shared_preferences: ^2.2.3
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-
+  http: ^1.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -63,8 +78,14 @@ flutter:
   assets:
     - assets/places/
     - assets/icons/
+    - assets/images/
+    - assets/audio/
+    - assets/onboard/
     - assets/
-
+    - assets/images/hotel/
+    - assets/images/room/
+    - assets/images/payment/
+    - assets/animations/success.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
