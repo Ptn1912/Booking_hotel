@@ -21,13 +21,15 @@ class HotelController extends Controller
         // Return JSON response with the fetched hotels
         return response()->json($all_hotels, 200);
     }
+   
     public function search($name)
     {
-        $hotelName = Hotel::where('name', $name)->first();
+        $hotels = Hotel::where('name', 'LIKE', '%' . $name . '%')->get();
 
-        // Trả về view với dữ liệu sản phẩm được lọc và trạng thái kết quả tìm kiếm
-        return response()->json($hotelName, 200);
+        // Trả về danh sách khách sạn phù hợp với tên tìm kiếm
+        return response()->json($hotels, 200);
     }
+
     public function getAllHotels()
     {
         $allHotels = Hotel::all();

@@ -8,33 +8,69 @@ use App\Models\Room;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
+use Hash;
+use Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 class AccountController extends Controller
 {
-    public function UpdateAccount(UserRequest $request, $id)
+    // public function UpdateAccount(UserRequest $request, $id)
+    // {
+    //     $request->validated();
+    //         $user = User::findOrFail($id);
+    //         $user->username = $request->input('username');
+    //         $user->email = $request->input('email');
+    //         $user->phone = $request->input('phone');
+    //         $user->address = $request->input('address');
+    //         $user->password = bcrypt($request->input('password'));
+
+    //         // Check for null values and assign default values if necessary
+    //         if ($user->phone === null) {
+    //             $user->phone = ''; // Or any other default value you prefer
+    //         }
+    //         if ($user->address === null) {
+    //             $user->address = ''; // Or any other default value you prefer
+    //         }
+
+    //         $user->save();
+
+    //         return response()->json([
+    //             'message' => 'Account updated successfully',
+    //             'user' => $user
+    //         ], 201);
+    // }
+    public function UpdateAccount(UserRequest $request)
     {
+        $user = Auth::user();
         $request->validated();
-            $user = User::findOrFail($id);
-            $user->username = $request->input('username');
-            $user->email = $request->input('email');
-            $user->phone = $request->input('phone');
-            $user->address = $request->input('address');
-            $user->password = bcrypt($request->input('password'));
+        // $request->validate([
+        //     'username' => 'string|max:255',
+        //     'email' => 'string|email|max:255|unique:users,email,' . $user->id,
+        //     'phone' => 'string|max:15',
+        //     'address' => 'string|max:255',
+        //     'password' => 'string|min:6',
+        // ]);
 
-            // Check for null values and assign default values if necessary
-            if ($user->phone === null) {
-                $user->phone = ''; // Or any other default value you prefer
-            }
-            if ($user->address === null) {
-                $user->address = ''; // Or any other default value you prefer
-            }
+        if ($request->has('username')) {
+            $user->username = $request->username;
+        }
+        if ($request->has('email')) {
+            $user->email = $request->email;
+        }
+        if ($request->has('phone')) {
+            $user->phone = $request->phone;
+        }
+        if ($request->has('address')) {
+            $user->address = $request->address;
+        }
+        if ($request->has('password')) {
+            $user->password = Hash::make($request->password);
+        }
+          $user->role=0;
 
-            $user->save();
-
-            return response()->json([
-                'message' => 'Account updated successfully',
-                'user' => $user
-            ], 201);
+        $user->save();
+        $token = $user->createToken('booking_hotel')->plainTextToken;
+        return response()->json(['message' => 'User updated successfully','token'=>$token], 200);
     }
 
     public function allUsers(){

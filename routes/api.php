@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -16,26 +17,23 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 Route::group(['middleware'=>['auth:sanctum']],function(){
     Route::post('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/user', [AuthenticationController::class, 'user']);
-    Route::post('update_account/{id}', [AccountController::class, 'UpdateAccount']);
+    Route::post('update_account', [AccountController::class, 'UpdateAccount']);
+    Route::get('/account', [CheckoutController::class, 'account'])->name('account');
 }
 );
-Route::get('/feeds', [FeedController::class, 'index'])->middleware('auth:sanctum');
-Route::post('/feed/store', [FeedController::class, 'store'])->middleware('auth:sanctum');
-Route::post('/feed/like/{feed_id}', [FeedController::class, 'likePost'])->middleware('auth:sanctum');
-Route::post('/feed/comment/{feed_id}', [FeedController::class, 'comment'])->middleware('auth:sanctum');
-Route::get('/feed/comments/{feed_id}', [FeedController::class, 'getComments'])->middleware('auth:sanctum');
+
+Route::post('/post_blog', [BlogController::class, 'postBlog']);
+Route::get('/show_blog', [BlogController::class, 'showBlog']);
+
 Route::post('register',[AuthenticationController::class,'register']);
 Route::post('login',[AuthenticationController::class,'login']);
 Route::get('/book', [HotelController::class,'index']);
 Route::post('/search/{name}', [HotelController::class, 'search']);
 Route::get('/detail/{HotelID}', [HotelController::class, 'detail']);
 Route::post('/payment', [CheckoutController::class, 'payment']);
-// Route::post('update_account', [AccountController::class, 'UpdateAccount']);
+
 // Route::get('user/{id}', [AccountController::class, 'showUser']);
-Route::get('/test',function(){
-return response([
-    'message' =>'Api is working'],200);
-});
+
 
 
 // Route::group(['middleware' => ['auth:sanctum']], function() {
