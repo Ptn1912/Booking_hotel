@@ -125,9 +125,7 @@ class _RoomDetailScreenState extends State<RoomDetailScreen> {
                             icon: Badge(
                               label: Text(itemCount.toString()),
                               child: Icon(FontAwesomeIcons.cartShopping),
-                            )
-                            )
-                            )
+                            )))
                   ],
                 ),
               ),

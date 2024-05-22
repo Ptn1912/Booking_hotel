@@ -1,5 +1,4 @@
 import 'package:booking_hotel/consts.dart';
-import 'package:booking_hotel/widgets/icon_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,7 +14,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
- 
      return AppBar(
       backgroundColor: kcontentColor,
        leading: IconButton(
@@ -25,7 +23,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
    title: Text(
          title,
          textAlign: TextAlign.center,
-         style: Theme.of(context).textTheme.headlineSmall,
+         style: TextStyle(fontSize: 22),
      ),
       centerTitle: true, // Đặt tiêu đề ở giữa
     );

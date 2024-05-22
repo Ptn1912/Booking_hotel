@@ -5,7 +5,6 @@ class UserModel {
   String? password;
   String? address;
   String? phone;
- String? token;
   UserModel({
      this.id,
     this.username , // Provide default value or mark as required
@@ -13,18 +12,17 @@ class UserModel {
     this.password ,
     this.address ,
     this.phone ,
-    this.token ,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-       id: json['user']['id'] ,
-      username: json['user']['username'] , // Provide default value or handle null
-      email: json['user']['email'],
-      password: json['user']['password'] ,
-      address: json['user']['address'] ,
-      phone: json['user']['phone'] ,
-      token:json['token']
-    );
-  }
+  return UserModel(
+    id: json['user']['id'] , // Provide a default value or handle null
+    username: json['user']['username'] , // Provide a default value or handle null
+    email: json['user']['email'] , // Provide a default value or handle null
+    password: json['user']['password'] , // Provide a default value or handle null
+    address: json['user']['address'] ,
+    phone: json['user']['phone'] , // Provide a default value or handle null
+  );
+}
+
 }

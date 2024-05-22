@@ -1,8 +1,6 @@
 import 'package:booking_hotel/consts.dart';
-import 'package:booking_hotel/controllers/checkoutController.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 
 class TBillingPaymentSection extends StatefulWidget {
   final Function(String) onPaymentMethodSelected;
@@ -24,7 +22,6 @@ class _TBillingPaymentSectionState extends State<TBillingPaymentSection> {
       selectedPaymentMethod = method;
     });
 
-    // Gọi hàm callback để truyền giá trị selectedPaymentMethod
     widget.onPaymentMethodSelected(selectedPaymentMethod);
   }
 

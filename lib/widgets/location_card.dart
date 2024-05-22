@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LocationCard extends StatelessWidget {
-  const LocationCard({Key? key}) : super(key: key);
+  final String address;
+  const LocationCard({Key? key,required this.address}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class LocationCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "United States, New York",
+                  "$address",
                   style: Theme.of(context).textTheme.labelLarge,
                 )
               ],

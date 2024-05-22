@@ -1,4 +1,3 @@
-import 'package:booking_hotel/controllers/accountController.dart';
 import 'package:booking_hotel/controllers/authentication.dart';
 import 'package:booking_hotel/models/UserModel.dart';
 import 'package:booking_hotel/widgets/app_bar.dart';
@@ -8,10 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:booking_hotel/consts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:booking_hotel/constants/constants.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class UpdateProfileScreen extends StatefulWidget {
   final int id;
@@ -20,7 +15,6 @@ class UpdateProfileScreen extends StatefulWidget {
   final String? phone; // Make phone nullable
   final String? address;
   final String password;
-  final String token;
   const UpdateProfileScreen({
     Key? key,
     required this.id,
@@ -29,7 +23,6 @@ class UpdateProfileScreen extends StatefulWidget {
     this.phone, // Add a question mark (?) after the type
     this.address,
     required this.password,
-     required this.token,
   }) : super(key: key);
 
   @override
@@ -37,14 +30,15 @@ class UpdateProfileScreen extends StatefulWidget {
 }
 
 class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
-  TextEditingController _usernameController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _addressController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  final AccountController _accountController2 = Get.put(AccountController());
+  final TextEditingController _usernameController = TextEditingController();
+ final TextEditingController _emailController = TextEditingController();
+ final TextEditingController _phoneController = TextEditingController();
+ final TextEditingController _addressController = TextEditingController();
+ final TextEditingController _passwordController = TextEditingController();
+  final AuthenticationController _accountController2 =
+      Get.put(AuthenticationController());
 
-  bool _isUpdating = false;
+  
   List<UserModel> rooms = [];
 
   @override
@@ -53,7 +47,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: MyAppBar(
-        title: 'update profile',
+        title: 'Update profile',
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -88,16 +82,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               ),
               const SizedBox(height: 50),
               Column(children: [
-                 InputField(
+                InputField(
                   icon: FaIcon(FontAwesomeIcons.userLarge),
                   controller: _usernameController,
                   hintText: '${widget.username}',
-                 
                   obcureText: false,
                 ),
                 const SizedBox(height: 5),
                 InputField(
-                 
                   icon: FaIcon(FontAwesomeIcons.envelope),
                   controller: _emailController,
                   hintText: '${widget.email}',
@@ -115,60 +107,51 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   icon: FaIcon(FontAwesomeIcons.phone),
                   controller: _phoneController,
                   hintText: '${widget.phone}',
-                 
                   obcureText: false,
                 ),
                 const SizedBox(height: 5),
                 InputField(
-                    hintText: '${widget.password}',
+                  hintText: '${widget.password}',
                   icon: FaIcon(FontAwesomeIcons.fingerprint),
                   controller: _passwordController,
-                  
                   obcureText: true,
                 ),
                 const SizedBox(height: 5),
                 CupertinoButton(
                   padding: EdgeInsets.zero,
-                   child: Container(
-                      alignment: Alignment.center,
-                      width: double.infinity,
-                      height: size.height * 0.080,
-                      decoration: BoxDecoration(
-                        color: kButtonColor,
-                        borderRadius: BorderRadius.circular(37),
-                      ),
-                       child: _isUpdating
-                        ? const Center(
-                            child: CircularProgressIndicator(
-                            color: Colors.white,
-                          ))
-                        : Text(
-                            "Edit Profile",
-                            style: TextStyle(
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: double.infinity,
+                    height: size.height * 0.080,
+                    decoration: BoxDecoration(
+                      color: kButtonColor,
+                      borderRadius: BorderRadius.circular(37),
+                    ),
+                    child: Obx(() {
+                      return _accountController2.isLoading.value
+                          ? CircularProgressIndicator(
+                              color: Colors.white,
+                            )
+                          : Text(
+                              "Edit Profile",
+                              style: TextStyle(
                                 color: kWhiteColor,
-                                fontWeight: FontWeight.w700),
-                          ),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            );
+                    }),
                   ),
-                  onPressed: _isUpdating // Kiểm tra trạng thái cập nhật
-                      ? null // Nếu đang cập nhật thì không cho nhấn nút
+                  onPressed: _accountController2.isLoading.value
+                      ? null // Disable button if loading
                       : () async {
-                          // Nếu không phải đang cập nhật, thực hiện cập nhật
-                          setState(() {
-                            _isUpdating = true; // Đặt trạng thái cập nhật thành true
-                          });
                           await _accountController2.UpdateAccount(
-                              id: widget.id,
-                              username: _usernameController.text.trim(),
-                              email: _emailController.text.trim(),
-                              phone: _phoneController.text.trim(),
-                              address: _addressController.text.trim(),
-                              password: _passwordController.text.trim(),
-                               token: widget.token
-                              );
-                             
-                          setState(() {
-                            _isUpdating = false; // Cập nhật hoàn thành, đặt lại trạng thái thành false
-                          });
+                            id: widget.id,
+                            username: _usernameController.text.trim(),
+                            email: _emailController.text.trim(),
+                            phone: _phoneController.text.trim(),
+                            address: _addressController.text.trim(),
+                            password: _passwordController.text.trim(),
+                          );
                         },
                 ),
               ]),

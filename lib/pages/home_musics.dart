@@ -18,11 +18,10 @@ class _HomeMusicsState extends State<HomeMusics> {
     List<Playlist> playlists = Playlist.playlists;
     return Container(
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         appBar: MyAppBar(
           title: 'Your Music',
         ),
-        
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -32,17 +31,34 @@ class _HomeMusicsState extends State<HomeMusics> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Welcome',
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            fontWeight: FontWeight.bold, color: Colors.white)),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 5),
                     Text('Enjoy your favourite music',
-                        style: Theme.of(context).textTheme.headline6!.copyWith(
-                            fontWeight: FontWeight.bold, color: Colors.white)),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 30),
-                    TextFormField(
-                      decoration: InputDecoration(
+                    Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 3), // Thay đổi vị trí của bóng đổ
+                          ),
+                        ],
+                        borderRadius: BorderRadius.circular(
+                            50.0), // Góc bo tròn cho Container
+                      ),
+                      child: TextFormField(
+                        decoration: InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Colors.white, // Màu nền của TextFormField
                           hintText: "Search",
                           hintStyle: Theme.of(context)
                               .textTheme
@@ -51,8 +67,11 @@ class _HomeMusicsState extends State<HomeMusics> {
                           prefixIcon:
                               Icon(Icons.search, color: Colors.grey.shade400),
                           border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(50.0),
-                              borderSide: BorderSide.none)),
+                            borderRadius: BorderRadius.circular(50.0),
+                            borderSide: BorderSide.none, // Bỏ đi viền mặc định
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 20),
                     ListView.builder(
@@ -105,7 +124,6 @@ class _HomeMusicsState extends State<HomeMusics> {
                                             .bodyLarge!
                                             .copyWith(
                                               fontWeight: FontWeight.bold,
-                                              color: Colors.white,
                                             ),
                                       ),
                                       Text(
@@ -128,7 +146,6 @@ class _HomeMusicsState extends State<HomeMusics> {
                                   },
                                   icon: Icon(
                                     Icons.play_circle,
-                                    color: Colors.white,
                                   ),
                                 ),
                               ],

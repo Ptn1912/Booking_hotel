@@ -19,7 +19,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final AccountController _accountController = Get.put(AccountController());
   final AuthenticationController _authenticationController =
       Get.put(AuthenticationController());
   String username = '';
@@ -28,7 +27,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String password = '';
   String address = '';
   String phone = '';
-  String token = '';
   @override
   void initState() {
     super.initState();
@@ -47,7 +45,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       password =
           userData != null ? userData['password'] ?? 'Unknown' : 'Unknown';
       phone = userData != null ? userData['phone'] ?? 'Unknown' : 'Unknown';
-      token = userData != null ? userData['token'] ?? 'Unknown' : 'Unknown';
     });
   }
 
@@ -55,7 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: MyAppBar(
-          title: '$username',
+          title: 'Account',
         ),
         body: GetBuilder<AccountController>(builder: (controller) {
           return SingleChildScrollView(
@@ -110,7 +107,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     phone: phone,
                                     address: address,
                                     password: password,
-                                    token: token)));
+                                  )));
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: tPrimaryColor,

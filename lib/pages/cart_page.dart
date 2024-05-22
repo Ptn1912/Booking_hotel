@@ -3,11 +3,7 @@ import 'package:booking_hotel/pages/checkout_page.dart';
 import 'package:booking_hotel/widgets/app_bar.dart';
 import 'package:booking_hotel/widgets/cart_items.dart';
 import 'package:booking_hotel/widgets/empty_cart.dart';
-import 'package:booking_hotel/widgets/order_address.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
 import 'package:persistent_shopping_cart/model/cart_model.dart';
 import 'package:persistent_shopping_cart/persistent_shopping_cart.dart';
 

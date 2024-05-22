@@ -1,7 +1,5 @@
 import 'package:booking_hotel/consts.dart';
-import 'package:booking_hotel/pages/home_page.dart';
 import 'package:booking_hotel/widgets/bottom_navbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -15,14 +13,6 @@ class SuccessView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
              Lottie.asset('assets/animations/success.json',),
-                // decoration: BoxDecoration(
-                //   image: DecorationImage(
-                //     image: AssetImage('assets/images/payment/Success.png'),
-                //     scale: 2.0,
-                //   ),
-                // ),
-            
-            
               Text(
                 'Thank you for your reservation',
                 style: TextStyle(

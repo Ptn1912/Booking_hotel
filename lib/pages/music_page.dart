@@ -86,9 +86,10 @@ class _MusicPageState extends State<MusicPage> {
       child: Scaffold(
         backgroundColor: Colors.grey.withOpacity(0.1),
         appBar: MyAppBar(
-          title: 'Your Music',
+          title: playlist.title,
         ),
         body: Container(
+           color: Colors.grey[200],
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.all(20),
@@ -121,14 +122,14 @@ class _MusicPageState extends State<MusicPage> {
                   Text(
                     playlist.title,
                     style: TextStyle(
-                      color: Colors.white,
+                     
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                     ),
                   ),
                   Text(
                     playlist.singer,
-                    style: TextStyle(color: Colors.white.withOpacity(0.5)),
+                    
                   ),
                 ],
               ),
@@ -149,7 +150,7 @@ class _MusicPageState extends State<MusicPage> {
                   Text(
                     '${formatDuration(_position)} ',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.5),
+                      
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                     ),
@@ -157,7 +158,7 @@ class _MusicPageState extends State<MusicPage> {
                   Text(
                     '${formatDuration(_duration)}',
                     style: TextStyle(
-                      color: Colors.white.withOpacity(0.5),
+                     
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                     ),
@@ -176,7 +177,7 @@ class _MusicPageState extends State<MusicPage> {
                     },
                     icon: Icon(
                       Icons.skip_previous,
-                      color: Colors.white,
+                     
                       size: 36,
                     ),
                   ),
@@ -186,7 +187,7 @@ class _MusicPageState extends State<MusicPage> {
                       isPlaying
                           ? Icons.pause
                           : Icons.play_arrow, // Sử dụng biến trạng thái local
-                      color: Colors.white,
+                     
                       size: 40,
                     ),
                   ),
@@ -196,7 +197,7 @@ class _MusicPageState extends State<MusicPage> {
                     },
                     icon: Icon(
                       Icons.skip_next,
-                      color: Colors.white,
+                     
                       size: 36,
                     ),
                   )

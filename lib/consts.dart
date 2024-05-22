@@ -3,7 +3,7 @@ const Color g1=Color(0xffE5B2CA);
 const Color g2=Color.fromARGB(255, 211, 165, 221);
 const Color kInputColor=Color(0xff3C3C43);
 const Color kButtonColor=Color(0xff78258B);
-const Color kWhiteColor=Colors.white;
+const Color kWhiteColor=Color(0xFFFFFFFF);
 const Color iconColor=Color.fromARGB(255, 232, 230, 230);
 const Color tDarkColor=Color.fromARGB(255, 37, 37, 37);
 const Color kcontentColorr=Color.fromARGB(255, 251, 246, 246);
@@ -34,3 +34,12 @@ class TSize{
 static const double defaultSpace=24.0;
 static const double spaceBtnSection=32.0;
 }
+const k2AccentStroke = Color(0xFF25A0B0);
+const k2MainThemeColor = Color.fromARGB(255, 153, 191, 242);
+
+const k3GradientAccent = RadialGradient(
+  colors: [Color.fromARGB(255, 239, 211, 210), k2MainThemeColor],
+  center: Alignment.topCenter,
+  radius: 0.8,
+);
+const k3Pink = Color(0xFFF5C8C6);

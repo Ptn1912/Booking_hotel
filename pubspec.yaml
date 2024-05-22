@@ -41,6 +41,7 @@ dependencies:
   audioplayers: ^5.2.1
   get: ^4.6.6
   loading_overlay: ^0.3.0
+  image_picker: ^1.1.1
   font_awesome_flutter: ^10.7.0
   google_fonts: ^6.2.0
   ionicons: ^0.2.2
@@ -78,10 +79,12 @@ flutter:
   assets:
     - assets/places/
     - assets/icons/
+    - assets/icons/send.png
     - assets/images/
     - assets/audio/
     - assets/onboard/
     - assets/
+    - assets/blog/
     - assets/images/hotel/
     - assets/images/room/
     - assets/images/payment/

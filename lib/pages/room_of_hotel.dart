@@ -188,7 +188,8 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                                                                 builder:
                                                                     (context) =>
                                                                         RoomDetailScreen(
-                                                                          room_id:rooms[index].room_id,
+                                                                          room_id:
+                                                                              rooms[index].room_id,
                                                                           HotelName:
                                                                               widget.HotelName,
                                                                           address:
@@ -207,7 +208,6 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                                                           );
                                                         },
                                                         style: ButtonStyle(
-                                                          
                                                           backgroundColor:
                                                               MaterialStateProperty
                                                                   .all<Color>(
@@ -217,7 +217,6 @@ class _TouristDetailsPageState extends State<TouristDetailsPage> {
                                                               MaterialStateProperty
                                                                   .all(
                                                             Size.fromHeight(60),
-                                                            
                                                           ),
                                                           // Màu nền
                                                         ),

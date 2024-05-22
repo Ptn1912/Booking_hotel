@@ -1,10 +1,9 @@
 import 'package:booking_hotel/consts.dart';
 import 'package:booking_hotel/pages/cart_page.dart';
+import 'package:booking_hotel/pages/hotel_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:booking_hotel/widgets/custom_icon_button.dart';
 import 'package:booking_hotel/widgets/location_card.dart';
 import 'package:booking_hotel/widgets/nearby_places.dart';
 import 'package:booking_hotel/widgets/recommended_places.dart';
@@ -17,8 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String username = 'Unknown';
-
+  String username = 'User';
+ String address = 'Da Nang';
   @override
   void initState() {
     super.initState();
@@ -30,6 +29,7 @@ class _HomePageState extends State<HomePage> {
     final userData = box.read('user');
     setState(() {
       username = userData != null ? userData['username'] ?? 'Unknown' : 'Unknown';
+      address = userData != null ? userData['address'] ?? 'Unknown' : 'Unknown';
     });
   }
   @override
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
         padding: const EdgeInsets.all(14),
         children: [
           // LOCATION CARD
-          const LocationCard(),
+           LocationCard(address:address),
           const SizedBox(
             height: 15,
           ),
@@ -109,7 +109,9 @@ class _HomePageState extends State<HomePage> {
                 "Nearby From You",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              TextButton(onPressed: () {}, child: const Text("View All"))
+              TextButton(onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder:(_)=> HotelPage()));
+              }, child: const Text("View All"))
             ],
           ),
           const SizedBox(height: 10),

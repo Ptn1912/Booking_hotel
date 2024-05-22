@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:persistent_shopping_cart/model/cart_model.dart';
 
 class CheckoutPage extends StatefulWidget {
@@ -31,6 +32,7 @@ class _CheckoutWidgetState extends State<CheckoutPage> {
   late String quantityText;
   late String productNameText;
   String selectedPaymentMethod = '';
+   late int id;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -96,7 +98,6 @@ class _CheckoutWidgetState extends State<CheckoutPage> {
                         },
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
-                            
                               borderRadius: BorderRadius.circular(10)),
                           fillColor: Colors.grey.withOpacity(0.5),
                           prefixIcon: Icon(
@@ -196,55 +197,67 @@ class _CheckoutWidgetState extends State<CheckoutPage> {
       ),
     );
   }
+void _handleCheckout() async {
+  final box = GetStorage();
+  final userData = box.read('user');
+  int userId = userData != null ? userData['id'] ?? 'Unknown' : 'Unknown';
+  
+  setState(() {
+    id = userId; // Update the state if needed
+  });
 
-  void _handleCheckout() async {
-     List<String> productNames = [];
-      for (var item in widget.cartItems) {
-        productNames.add(item.productName);
-      }
-
-      int totalQuantity = 0;
-      int sum = 0;
-      for (var item in widget.cartItems) {
-        productNames.add(item.productName);
-        sum += item.quantity;
-      }
-      totalQuantity = sum;
-    if (_formKey.currentState!.validate()) {
-      String name = _nameController.text.trim();
-      String email = _emailController.text.trim();
-      String phone = _phoneController.text.trim();
-      String address = _addressController.text.trim();
-      if (selectedPaymentMethod == null || selectedPaymentMethod.isEmpty) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text('Thông báo'),
-              content: Text('Vui lòng chọn một phương thức thanh toán.'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Đóng'),
-                ),
-              ],
-            );
-          },
-        );
-        return;
-      }
-      await _checkoutController.checkout(
-        name: name,
-        email: email,
-        phone: phone,
-        address: address,
-        productNames: productNames.join(','),
-        totalPriceText: widget.totalPrice.toString(),
-        quantities: totalQuantity,
-        method: selectedPaymentMethod,
-      );
-    }
+  List<String> productNames = [];
+  for (var item in widget.cartItems) {
+    productNames.add(item.productName);
   }
+
+  int totalQuantity = 0;
+  int sum = 0;
+  for (var item in widget.cartItems) {
+    sum += item.quantity;
+  }
+  totalQuantity = sum;
+
+  if (_formKey.currentState!.validate()) {
+    String name = _nameController.text.trim();
+    String email = _emailController.text.trim();
+    String phone = _phoneController.text.trim();
+    String address = _addressController.text.trim();
+
+    if (selectedPaymentMethod == null || selectedPaymentMethod.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Thông báo'),
+            content: Text('Vui lòng chọn một phương thức thanh toán.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Đóng'),
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    // Pass the userId to the checkout controller
+    await _checkoutController.checkout(
+      name: name,
+      email: email,
+      phone: phone,
+      address: address,
+      productNames: productNames.join(','),
+      totalPriceText: widget.totalPrice.toString(),
+      quantities: totalQuantity,
+      method: selectedPaymentMethod,
+      userId: userId, // Include the userId here
+    );
+  }
+}
+
 }

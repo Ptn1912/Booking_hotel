@@ -30,11 +30,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
             alignment: Alignment.topRight,
             child: Padding(
               padding: EdgeInsets.only(right: 20.0),
-              child: Text(
-                "Skip Tutorial",
-                style:
-                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-              ),
+             
             ),
           )),
           Align(
